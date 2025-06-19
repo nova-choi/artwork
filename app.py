@@ -21,7 +21,8 @@ if query:
     for object_id in ids:
         data = get_artwork_details(object_id)
         st.subheader(data["title"])
-        if data.get("primaryImageSmall"):  # 이미지가 존재할 경우에만 출력
-            st.image(data["primaryImageSmall"], width=300)
+        image_url = data.get("primaryImageSmall")
+        if image_url and image_url.strip():  # 이미지가 실제로 존재할 때만 출력
+            st.image(image_url, width=300)
         st.write(f"Artist: {data.get('artistDisplayName')}")
         st.write(f"Year: {data.get('objectDate')}")
